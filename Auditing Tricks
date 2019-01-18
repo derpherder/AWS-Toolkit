@@ -1,0 +1,11 @@
+#CloudTrail and Metrics
+#CloudWatch>Log Groups>CloudTrail Group
+
+#Metric Filter: Find out-of-region actions
+#Pattern to use:
+{($.awsRegion != "us-east-1" && $.awsRegion != "us-west-2" )}
+
+#Find and Remove Root API Keys
+#First, Find the API key in CloudTrail after enabling auditing
+#Pattern to use:
+{($.userIdentity.accessKeyId = "xxxxxxxxxx" ||$.accessKeyId = "xxxxxxxxxx" )}
