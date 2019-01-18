@@ -9,3 +9,4 @@
 #First, Find the API key in CloudTrail after enabling auditing
 #Pattern to use:
 {($.userIdentity.accessKeyId = "xxxxxxxxxx" ||$.accessKeyId = "xxxxxxxxxx" )}
+#After finding all key use and alerting on it, switch to IAM roles
