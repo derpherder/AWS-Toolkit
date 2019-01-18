@@ -1,5 +1,4 @@
-#CloudTrail and Metrics
-#CloudWatch>Log Groups>CloudTrail Group
+#CloudTrail
 
 ###  Find out-of-region actions
 #Pattern to use:
