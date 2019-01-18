@@ -1,0 +1,6 @@
+#CloudTrail and Metrics
+#CloudWatch>Log Groups>CloudTrail Group
+
+#Metric Filter: Find out of region actions
+#Pattern to use:
+{($.awsRegion != "us-east-1" && $.awsRegion != "us-west-2" )}
