@@ -1,12 +1,28 @@
 #CloudTrail and Metrics
 #CloudWatch>Log Groups>CloudTrail Group
 
-#Metric Filter: Find out-of-region actions
+###  Find out-of-region actions
 #Pattern to use:
 {($.awsRegion != "us-east-1" && $.awsRegion != "us-west-2" )}
 
-#Find and Remove Root API Keys
+###  Find and Remove Root API Keys
 #First, Find the API key in CloudTrail after enabling auditing
 #Pattern to use:
 {($.userIdentity.accessKeyId = "xxxxxxxxxx" ||$.accessKeyId = "xxxxxxxxxx" )}
 #After finding all key use and alerting on it, switch to IAM roles
+
+###  Find failed console login attempts
+#The most important part of this one is going to be figuring out what
+#a fair number of failures are in order to be alerted. 
+#More than a few within an hour is probably noteworthy.
+#Pattern to use:
+{($.eventName = ConsoleLogin)&&($.responseElements.ConsoleLogin = "Failure")}
+
+### Find Security Group Changes
+# This will find any security group actions that make changes rather than simply listing
+{($.eventName = AuthorizeSecurityGroupIngress) ||
+($.eventName = AuthorizeSecurityGroupEgress) ||
+($.eventName = CreateSecurityGroup) ||
+($.eventName = DeleteSecurityGroup) ||
+($.eventName = RevokeSecurityGroupIngress) ||
+($.eventName = RevokeSecurityGroupEgress) ||}
